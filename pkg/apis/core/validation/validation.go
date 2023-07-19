@@ -6459,7 +6459,7 @@ func validateScopedResourceSelectorRequirement(resourceQuotaSpec *core.ResourceQ
 		case core.ResourceQuotaScopeBestEffort, core.ResourceQuotaScopeNotBestEffort, core.ResourceQuotaScopeTerminating, core.ResourceQuotaScopeNotTerminating, core.ResourceQuotaScopeCrossNamespacePodAffinity:
 			if req.Operator != core.ScopeSelectorOpExists {
 				allErrs = append(allErrs, field.Invalid(fldPath.Child("operator"), req.Operator,
-					"must be 'Exist' when scope is any of ResourceQuotaScopeTerminating, ResourceQuotaScopeNotTerminating, ResourceQuotaScopeBestEffort, ResourceQuotaScopeNotBestEffort or ResourceQuotaScopeCrossNamespacePodAffinity"))
+					"must be 'Exists' when scope is any of ResourceQuotaScopeTerminating, ResourceQuotaScopeNotTerminating, ResourceQuotaScopeBestEffort, ResourceQuotaScopeNotBestEffort or ResourceQuotaScopeCrossNamespacePodAffinity"))
 			}
 		}
 
@@ -6472,7 +6472,7 @@ func validateScopedResourceSelectorRequirement(resourceQuotaSpec *core.ResourceQ
 		case core.ScopeSelectorOpExists, core.ScopeSelectorOpDoesNotExist:
 			if len(req.Values) != 0 {
 				allErrs = append(allErrs, field.Invalid(fldPath.Child("values"), req.Values,
-					"must be no value when `operator` is 'Exist' or 'DoesNotExist' for scope selector"))
+					"must be no value when `operator` is 'Exists' or 'DoesNotExist' for scope selector"))
 			}
 		default:
 			allErrs = append(allErrs, field.Invalid(fldPath.Child("operator"), req.Operator, "not a valid selector operator"))
